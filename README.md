@@ -7,3 +7,5 @@ npm install method-override
 npm install passport passport-local
 npm install passport-local-mongoose
 npm install joi
+
+mongosh
