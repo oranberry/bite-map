@@ -13,4 +13,5 @@ mongosh
 npm i multer  
 npm i dotenv  
 npm i cloudinary multer-storage-cloudinary  
-npm i bs-custom-file-input
+npm i bs-custom-file-input  
+npm install @mapbox/mapbox-sdk

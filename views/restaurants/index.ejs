@@ -8,7 +8,12 @@
 <div class="card" mb-3>
     <div class="row">
         <div class="col-md-4">
-            <img class="img-fluid" alt="" src="<%= restaurant.images.url%>">
+            <%if(restaurant.images.length) {%>
+            <img class="img-fluid" alt="" src="<%= restaurant.images[0].url%>">
+            <% }else {%>
+            <img class="img-fluid" alt="" 
+                src="https://res.cloudinary.com/dq2n9vtu0/image/upload/v1686932925/BiteMap/bhg89ftfkbdvt6rl6m2q.jpg">
+            <% } %>
         </div>
         <div class="col-md-8">
             <div class="card-body">
