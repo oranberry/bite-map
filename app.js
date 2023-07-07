@@ -13,6 +13,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const Restaurant = require('./models/restaurant');
 
 const userRoutes = require('./routes/users');
 const restaurantRoutes = require('./routes/restaurants');
@@ -72,6 +73,16 @@ app.use('/restaurants/:id/reviews', reviewRoutes)
 app.get('/', (req, res) => {
     res.render('home')
 });
+// {title: {$regex: search_query, $options: "i"}
+app.get('/results', async(req, res) =>{
+    const {search_query} = req.query
+    const restaurants = await Restaurant.find({
+        "$or": [
+            { title: { $regex: search_query, $options: "i" } },
+            { location: { $regex: search_query, $options: "i" } }
+        ]})
+    res.render('search.ejs', {restaurants, search_query})
+})
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
